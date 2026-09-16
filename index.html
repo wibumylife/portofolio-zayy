@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Razalfa Aindi Siregar</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Canvas untuk background partikel roket -->
+  <canvas id="bgCanvas"></canvas>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="logo">Razalfa</div>
+      <nav>
+        <ul>
+          <li><a href="#home">Beranda</a></li>
+          <li><a href="#about">Tentang</a></li>
+          <li><a href="#skills">Keahlian</a></li>
+          <li><a href="#projects">Proyek</a></li>
+          <li><a href="#contact">Kontak</a></li>
+        </ul>
+      </nav>
+      <div class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Home -->
+  <section id="home" class="home">
+    <div class="container home-inner">
+      <div class="home-text">
+        <h1>Razalfa Aindi Siregar</h1>
+        <p class="tagline"><span id="typed-text"></span></p>
+        <p class="desc">Membangun solusi digital &amp; visual yang kreatif.</p>
+        <a href="https://wa.me/6281360624398" target="_blank" class="btn whatsapp-btn">
+          <i class="fab fa-whatsapp"></i> Hubungi WhatsApp
+        </a>
+      </div>
+      <div class="home-avatar">
+        <img src="assets/images/profile.jpg" alt="Razalfa" />
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="about">
+    <div class="container">
+      <h2 class="section-title">Tentang</h2>
+      <div class="about-content">
+        <p>
+          Saya <strong>Razalfa Aindi Siregar</strong>, seorang <strong>Full Stack Developer</strong> 
+          dengan keahlian lintas bidang. Selain menguasai pengembangan web, saya juga 
+          memiliki kemampuan di bidang <strong>editing, fotografi, dan videografi</strong>.
+        </p>
+        <p>
+          Saya percaya bahwa teknologi dan seni visual adalah dua sisi mata uang yang 
+          sama — keduanya membutuhkan kreativitas, presisi, dan perhatian terhadap detail.
+        </p>
+        <div class="about-details">
+          <span><i class="fas fa-envelope"></i> razalfaaindi@gmail.com</span>
+          <span><i class="fas fa-phone"></i> 0813-6062-4398</span>
+          <span><i class="fas fa-map-marker-alt"></i> Medan, Indonesia</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="skills">
+    <div class="container">
+      <h2 class="section-title">Keahlian</h2>
+      <div class="skills-grid">
+        <div class="skill"><i class="fas fa-code"></i><span>Full Stack Dev</span></div>
+        <div class="skill"><i class="fas fa-laptop-code"></i><span>Web Development</span></div>
+        <div class="skill"><i class="fas fa-video"></i><span>Videografi</span></div>
+        <div class="skill"><i class="fas fa-camera"></i><span>Fotografi</span></div>
+        <div class="skill"><i class="fas fa-pen-fancy"></i><span>Editing</span></div>
+        <div class="skill"><i class="fas fa-layer-group"></i><span>Desain Visual</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="projects">
+    <div class="container">
+      <h2 class="section-title">Proyek</h2>
+      <div class="projects-grid">
+        <div class="project">
+          <img src="assets/images/project1.jpg" alt="Project 1" />
+          <h3>Aplikasi Web Full Stack</h3>
+          <p>Development &amp; deployment</p>
+          <a href="#" class="btn-small">Detail</a>
+        </div>
+        <div class="project">
+          <img src="assets/images/project2.jpg" alt="Project 2" />
+          <h3>Film Pendek / Video</h3>
+          <p>Videografi &amp; editing</p>
+          <a href="#" class="btn-small">Detail</a>
+        </div>
+        <div class="project">
+          <img src="assets/images/project3.jpg" alt="Project 3" />
+          <h3>Portfolio Fotografi</h3>
+          <p>Fotografi &amp; retouching</p>
+          <a href="#" class="btn-small">Detail</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2 class="section-title">Kontak</h2>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p><i class="fas fa-envelope"></i> razalfaaindi@gmail.com</p>
+          <p><i class="fas fa-phone"></i> 0813-6062-4398</p>
+          
+          <!-- Social Media Buttons (style seperti WhatsApp) -->
+          <div class="social-buttons">
+            <a href="#" target="_blank" class="btn social-btn github-btn">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="#" target="_blank" class="btn social-btn instagram-btn">
+              <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="#" target="_blank" class="btn social-btn tiktok-btn">
+              <i class="fab fa-tiktok"></i> TikTok
+            </a>
+          </div>
+
+          <a href="https://wa.me/6281360624398" target="_blank" class="btn whatsapp-btn">
+            <i class="fab fa-whatsapp"></i> Chat WhatsApp
+          </a>
+        </div>
+        <form id="contactForm" class="contact-form">
+          <input type="text" id="name" placeholder="Nama" required />
+          <input type="email" id="email" placeholder="Email" required />
+          <textarea id="message" placeholder="Pesan" rows="4" required></textarea>
+          <button type="submit" class="btn">Kirim</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Razalfa Aindi Siregar</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
