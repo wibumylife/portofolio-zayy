@@ -136,6 +136,21 @@
             scroll-margin-top: 80px;
         }
 
+        /* ============================================================
+           EFEK ANIMASI SCROLL REVEAL (BERULANG KEMBALI)
+        ============================================================ */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* Custom Glass Card */
         .glass-card {
             background: var(--bg-glass);
@@ -729,7 +744,7 @@
     <section id="home" class="hero-section">
         <div class="container">
             <div class="row align-items-center gy-5">
-                <div class="col-lg-7 order-2 order-lg-1 hero-content">
+                <div class="col-lg-7 order-2 order-lg-1 hero-content reveal-item">
                     <!-- TAG UCAPAN DENGAN SIMBOL WAKTU -->
                     <div class="section-tag mb-3" id="greetingBadge">
                         <span id="timeIcon"><i class="fa-solid fa-sun text-warning"></i></span>
@@ -767,7 +782,7 @@
                 </div>
 
                 <!-- PROFILE PICTURE -->
-                <div class="col-lg-5 order-1 order-lg-2 text-center">
+                <div class="col-lg-5 order-1 order-lg-2 text-center reveal-item">
                     <div class="profile-img-container">
                         <img src="assets/images/profile.jpg" alt="Razalfa Aindi Siregar" class="profile-img">
                         <div class="status-badge">
@@ -784,7 +799,7 @@
     <section id="about">
         <div class="container">
             <div class="row gy-4 align-items-center">
-                <div class="col-lg-6">
+                <div class="col-lg-6 reveal-item">
                     <div class="glass-card p-4 p-md-5">
                         <div class="section-tag mb-2">Tentang Saya</div>
                         <h2 class="section-title">Kombinasi Teknologi & Seni Visual</h2>
@@ -797,7 +812,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-lg-6 reveal-item">
                     <div class="row g-3">
                         <div class="col-6">
                             <div class="glass-card stat-card">
@@ -832,7 +847,7 @@
     <!-- SKILLS SECTION -->
     <section id="skills">
         <div class="container">
-            <div class="text-center mx-auto mb-5">
+            <div class="text-center mx-auto mb-5 reveal-item">
                 <div class="section-tag">Keahlian</div>
                 <h2 class="section-title">Teknologi & Multimedia</h2>
                 <p class="section-desc mx-auto">Tools, bahasa pemrograman, aplikasi desain/editing, serta teknik multimedia yang saya kuasai.</p>
@@ -840,7 +855,7 @@
 
             <div class="row g-3 justify-content-center">
                 <!-- 1. HTML5 & CSS3 -->
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 reveal-item">
                     <div class="glass-card skill-item">
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <i class="devicon-html5-plain colored skill-icon"></i>
@@ -854,7 +869,7 @@
                 </div>
 
                 <!-- 2. Bootstrap 5 -->
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 reveal-item">
                     <div class="glass-card skill-item">
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <i class="devicon-bootstrap-plain colored skill-icon"></i>
@@ -868,7 +883,7 @@
                 </div>
 
                 <!-- 3. phpMyAdmin -->
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 reveal-item">
                     <div class="glass-card skill-item">
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <i class="devicon-mysql-plain colored skill-icon"></i>
@@ -882,7 +897,7 @@
                 </div>
 
                 <!-- 4. Git & GitHub -->
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 reveal-item">
                     <div class="glass-card skill-item">
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <i class="devicon-github-original skill-icon"></i>
@@ -896,7 +911,7 @@
                 </div>
 
                 <!-- 5. UI/UX Design -->
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 reveal-item">
                     <div class="glass-card skill-item">
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <i class="devicon-figma-plain colored skill-icon"></i>
@@ -910,7 +925,7 @@
                 </div>
 
                 <!-- 6. CapCut -->
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 reveal-item">
                     <div class="glass-card skill-item">
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <i class="fa-solid fa-video text-info skill-icon"></i>
@@ -924,7 +939,7 @@
                 </div>
 
                 <!-- 7. Filmora -->
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 reveal-item">
                     <div class="glass-card skill-item">
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <i class="fa-solid fa-film text-warning skill-icon"></i>
@@ -938,7 +953,7 @@
                 </div>
 
                 <!-- 8. Canva -->
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 reveal-item">
                     <div class="glass-card skill-item">
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <i class="fa-solid fa-palette text-primary skill-icon"></i>
@@ -952,7 +967,7 @@
                 </div>
 
                 <!-- 9. Photography -->
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 reveal-item">
                     <div class="glass-card skill-item">
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <i class="fa-solid fa-camera text-success skill-icon"></i>
@@ -966,7 +981,7 @@
                 </div>
 
                 <!-- 10. Videographer -->
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 reveal-item">
                     <div class="glass-card skill-item">
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <i class="fa-solid fa-clapperboard text-danger skill-icon"></i>
@@ -985,14 +1000,14 @@
     <!-- PROJECTS / PORTOFOLIO SECTION -->
     <section id="projects">
         <div class="container">
-            <div class="text-center mx-auto mb-4">
+            <div class="text-center mx-auto mb-4 reveal-item">
                 <div class="section-tag">Portofolio</div>
                 <h2 class="section-title">Proyek Terbaru</h2>
                 <p class="section-desc mx-auto">Beberapa hasil karya terbaik yang pernah saya selesaikan baru-baru ini.</p>
             </div>
 
             <!-- Filter Buttons -->
-            <div class="d-flex justify-content-center flex-wrap gap-2 mb-5">
+            <div class="d-flex justify-content-center flex-wrap gap-2 mb-5 reveal-item">
                 <button class="filter-btn active" data-filter="all">Semua</button>
                 <button class="filter-btn" data-filter="web">Web App</button>
                 <button class="filter-btn" data-filter="design">Video & Photo</button>
@@ -1000,7 +1015,7 @@
 
             <div class="row g-4" id="projectGrid">
                 <!-- PROYEK 1: TABUNGAN MURID -->
-                <div class="col-md-6 col-lg-4 project-item" data-category="web">
+                <div class="col-md-6 col-lg-4 project-item reveal-item" data-category="web">
                     <div class="glass-card project-card">
                         <div class="project-img-wrapper">
                             <img src="assets/images/project1.jpg" alt="Aplikasi Tabungan Murid" class="project-img">
@@ -1021,7 +1036,7 @@
                 </div>
 
                 <!-- PROYEK 2: VIDEO EDITOR & VIDEOGRAPHER -->
-                <div class="col-md-6 col-lg-4 project-item" data-category="design">
+                <div class="col-md-6 col-lg-4 project-item reveal-item" data-category="design">
                     <div class="glass-card project-card">
                         <div class="project-img-wrapper">
                             <img src="assets/images/project2.jpg" alt="Video Editor Showreel" class="project-img">
@@ -1042,7 +1057,7 @@
                 </div>
 
                 <!-- PROYEK 3: PHOTOGRAPHY -->
-                <div class="col-md-6 col-lg-4 project-item" data-category="design">
+                <div class="col-md-6 col-lg-4 project-item reveal-item" data-category="design">
                     <div class="glass-card project-card">
                         <div class="project-img-wrapper">
                             <img src="assets/images/project3.jpg" alt="Photography Collection" class="project-img">
@@ -1065,11 +1080,11 @@
         </div>
     </section>
 
-    <!-- EXPERIENCE SECTION (DENGAN NAMA PERUMDA TIRTA ULI PEMATANG SIANTAR KAPITAL) -->
+    <!-- EXPERIENCE SECTION -->
     <section id="experience">
         <div class="container">
             <div class="row gy-5 align-items-center">
-                <div class="col-lg-5">
+                <div class="col-lg-5 reveal-item">
                     <div class="section-tag">Pengalaman</div>
                     <h2 class="section-title">Perjalanan Karir Saya</h2>
                     <p class="text-secondary mb-4">Pengalaman kerja profesional di dunia pendidikan kejuruan dan lingkungan perusahaan daerah.</p>
@@ -1079,7 +1094,7 @@
                 <div class="col-lg-7">
                     <div class="timeline-container">
                         <!-- PENGALAMAN 1: SMK SWASTA PRAMA ARTHA -->
-                        <div class="timeline-item">
+                        <div class="timeline-item reveal-item">
                             <div class="timeline-dot"></div>
                             <div class="glass-card p-4">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
@@ -1091,8 +1106,8 @@
                             </div>
                         </div>
 
-                        <!-- PENGALAMAN 2: PERUMDA TIRTA ULI PEMATANG SIANTAR (HURUF KAPITAL) -->
-                        <div class="timeline-item">
+                        <!-- PENGALAMAN 2: PERUMDA TIRTA ULI PEMATANG SIANTAR -->
+                        <div class="timeline-item reveal-item">
                             <div class="timeline-dot"></div>
                             <div class="glass-card p-4">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
@@ -1112,14 +1127,14 @@
     <!-- CONTACT SECTION -->
     <section id="contact">
         <div class="container">
-            <div class="text-center mx-auto mb-5">
+            <div class="text-center mx-auto mb-5 reveal-item">
                 <div class="section-tag">Hubungi Saya</div>
                 <h2 class="section-title">Mari Bekerja Sama</h2>
                 <p class="section-desc mx-auto">Klik salah satu kontak di bawah untuk terhubung langsung dengan saya.</p>
             </div>
 
             <div class="row g-4">
-                <div class="col-lg-5">
+                <div class="col-lg-5 reveal-item">
                     <div class="d-flex flex-column gap-3">
                         <a href="mailto:razalfaaindi@gmail.com" class="glass-card contact-link-card">
                             <div class="contact-info-icon">
@@ -1153,7 +1168,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-7">
+                <div class="col-lg-7 reveal-item">
                     <div class="glass-card p-4 p-md-5">
                         <form id="contactForm">
                             <div class="row g-3">
@@ -1353,28 +1368,50 @@
             }
             typeEffect();
 
-            // 5. Animated Progress Bars on Scroll
+            // 5. Animated Progress Bars on Scroll (Berulang Kembali)
             const skillsSection = document.getElementById('skills');
             const progressBars = document.querySelectorAll('.progress-bar-fill');
-            let animated = false;
 
             const skillsObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting && !animated) {
+                    if (entry.isIntersecting) {
                         progressBars.forEach(bar => {
                             const targetVal = bar.getAttribute('data-progress');
                             bar.style.width = targetVal + '%';
                         });
-                        animated = true;
+                    } else {
+                        progressBars.forEach(bar => {
+                            bar.style.width = '0%';
+                        });
                     }
                 });
-            }, { threshold: 0.2 });
+            }, { threshold: 0.15 });
 
             if (skillsSection) {
                 skillsObserver.observe(skillsSection);
             }
 
-            // 6. Project Category Filtering
+            // 6. SCROLL REVEAL ANIMATION SYSTEM (LOGIKA BERULANG KEMBALI / INFINITE REPEAT)
+            const revealItems = document.querySelectorAll('.reveal-item');
+            
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    } else {
+                        entry.target.classList.remove('active'); // Dihapus saat keluar layar agar animasi bisa berulang kembali saat discroll lagi
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -30px 0px"
+            });
+
+            revealItems.forEach(item => {
+                revealObserver.observe(item);
+            });
+
+            // 7. Project Category Filtering
             const filterBtns = document.querySelectorAll('.filter-btn');
             const projectItems = document.querySelectorAll('.project-item');
 
@@ -1388,6 +1425,7 @@
                     projectItems.forEach(item => {
                         if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
                             item.style.display = 'block';
+                            setTimeout(() => { item.classList.add('active'); }, 50);
                         } else {
                             item.style.display = 'none';
                         }
@@ -1395,7 +1433,7 @@
                 });
             });
 
-            // 7. Project Modal Data Populate
+            // 8. Project Modal Data Populate
             const projectModal = document.getElementById('projectModal');
             if (projectModal) {
                 projectModal.addEventListener('show.bs.modal', (event) => {
@@ -1419,7 +1457,7 @@
                 });
             }
 
-            // 8. Back to Top Button
+            // 9. Back to Top Button
             const backToTopBtn = document.getElementById('backToTop');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 300) {
@@ -1433,7 +1471,7 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
-            // 9. Contact Form Submit
+            // 10. Contact Form Submit
             const contactForm = document.getElementById('contactForm');
             if (contactForm) {
                 contactForm.addEventListener('submit', (e) => {
