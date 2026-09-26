@@ -136,9 +136,7 @@
             scroll-margin-top: 80px;
         }
 
-        /* ============================================================
-           EFEK ANIMASI SCROLL REVEAL (BERULANG KEMBALI)
-        ============================================================ */
+        /* EFEK ANIMASI SCROLL REVEAL (BERULANG KEMBALI) */
         .reveal-item {
             opacity: 0;
             transform: translateY(40px);
@@ -681,6 +679,48 @@
             border-radius: 20px;
             color: var(--text-primary);
         }
+
+        /* STYLES KHUSUS POP-UP NOTIFIKASI CUSTOM (GLASSMORPHISM WITH BACKGROUND) */
+        .custom-popup-card {
+            background: var(--bg-glass-hover) !important;
+            backdrop-filter: blur(20px) saturate(180%) !important;
+            -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+            border: 1px solid var(--border-glass-hover) !important;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            color: var(--text-primary);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .popup-icon-box {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.25rem auto;
+        }
+
+        .popup-icon-success {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .popup-icon-warning {
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .popup-icon-danger {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
     </style>
 </head>
 <body oncontextmenu="return false;">
@@ -1124,7 +1164,7 @@
         </div>
     </section>
 
-    <!-- CONTACT SECTION (FORM SUDAH TERHUBUNG KE FORMSPREE KODE XEAORDLJ) -->
+    <!-- CONTACT SECTION (DENGAN VALIDASI STRICT EMAIL @ & DOMAIN) -->
     <section id="contact">
         <div class="container">
             <div class="text-center mx-auto mb-5 reveal-item">
@@ -1170,23 +1210,23 @@
 
                 <div class="col-lg-7 reveal-item">
                     <div class="glass-card p-4 p-md-5">
-                        <form id="contactForm" action="https://formspree.io/f/xeaordlj" method="POST">
+                        <form id="contactForm" action="https://formspree.io/f/xeaordlj" method="POST" novalidate>
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label class="form-label small text-muted font-weight-semibold">Nama Lengkap</label>
-                                    <input type="text" name="name" class="form-control form-control-glass" placeholder="Masukkan nama Anda" required>
+                                    <input type="text" name="name" id="inputName" class="form-control form-control-glass" placeholder="Masukkan nama Anda" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label small text-muted font-weight-semibold">Alamat Email</label>
-                                    <input type="email" name="email" class="form-control form-control-glass" placeholder="nama@email.com" required>
+                                    <input type="email" name="email" id="inputEmail" class="form-control form-control-glass" placeholder="nama@email.com" required>
                                 </div>
                                 <div class="col-12">
                                     <label class="form-label small text-muted font-weight-semibold">Subjek</label>
-                                    <input type="text" name="subject" class="form-control form-control-glass" placeholder="Diskusi Proyek / Penawaran Kerja" required>
+                                    <input type="text" name="subject" id="inputSubject" class="form-control form-control-glass" placeholder="Diskusi Proyek / Penawaran Kerja" required>
                                 </div>
                                 <div class="col-12">
                                     <label class="form-label small text-muted font-weight-semibold">Pesan Anda</label>
-                                    <textarea name="message" class="form-control form-control-glass" rows="4" placeholder="Tuliskan detail pesan Anda..." required></textarea>
+                                    <textarea name="message" id="inputMessage" class="form-control form-control-glass" rows="4" placeholder="Tuliskan detail pesan Anda..." required></textarea>
                                 </div>
                                 <div class="col-12">
                                     <button type="submit" id="submitBtn" class="btn btn-primary-custom w-100 py-3 d-flex justify-content-center align-items-center gap-2">
@@ -1236,6 +1276,20 @@
         </div>
     </div>
 
+    <!-- CUSTOM POP-UP / TOAST NOTIFIKASI MODAL (BER-BACKGROUND ELEGANT) -->
+    <div class="modal fade" id="notificationModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content custom-popup-card border-0">
+                <div class="popup-icon-box" id="popupIcon">
+                    <!-- Icon disuntikkan dari JS -->
+                </div>
+                <h5 class="fw-bold mb-2" id="popupTitle">Notifikasi</h5>
+                <p class="text-secondary small mb-4" id="popupMessage">Pesan notifikasi...</p>
+                <button type="button" class="btn btn-primary-custom w-100 btn-sm" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap 5 JavaScript Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -1256,6 +1310,30 @@
                     return false;
                 }
             });
+
+            // FUNGSI UNTUK MENAMPILKAN POP-UP MODAL CUSTOM (DENGAN BACKGROUND ELEGANT)
+            function showCustomPopup(title, message, type = 'success') {
+                const popupTitle = document.getElementById('popupTitle');
+                const popupMessage = document.getElementById('popupMessage');
+                const popupIcon = document.getElementById('popupIcon');
+
+                popupTitle.textContent = title;
+                popupMessage.textContent = message;
+
+                if (type === 'success') {
+                    popupIcon.className = 'popup-icon-box popup-icon-success';
+                    popupIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+                } else if (type === 'warning') {
+                    popupIcon.className = 'popup-icon-box popup-icon-warning';
+                    popupIcon.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+                } else {
+                    popupIcon.className = 'popup-icon-box popup-icon-danger';
+                    popupIcon.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
+                }
+
+                const notifModal = new bootstrap.Modal(document.getElementById('notificationModal'));
+                notifModal.show();
+            }
 
             // LOGIKA DYNAMIC TIME GREETING & ICON (PAGI, SIANG, SORE, MALAM)
             function updateDynamicGreeting() {
@@ -1391,7 +1469,7 @@
                 skillsObserver.observe(skillsSection);
             }
 
-            // 6. SCROLL REVEAL ANIMATION SYSTEM (LOGIKA BERULANG KEMBALI)
+            // 6. SCROLL REVEAL ANIMATION SYSTEM (BERULANG KEMBALI)
             const revealItems = document.querySelectorAll('.reveal-item');
             
             const revealObserver = new IntersectionObserver((entries) => {
@@ -1471,11 +1549,30 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
-            // 10. CONTACT FORM SUBMIT VIA FORMSPREE (AJAX WITHOUT REFRESH)
+            // 10. CONTACT FORM SUBMIT VIA FORMSPREE + STRICT VALIDASI EMAIL @
             const contactForm = document.getElementById('contactForm');
             if (contactForm) {
                 contactForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
+
+                    const nameInput = document.getElementById('inputName').value.trim();
+                    const emailInput = document.getElementById('inputEmail').value.trim();
+                    const subjectInput = document.getElementById('inputSubject').value.trim();
+                    const messageInput = document.getElementById('inputMessage').value.trim();
+
+                    // Cek jika ada bidang yang kosong
+                    if (!nameInput || !emailInput || !subjectInput || !messageInput) {
+                        showCustomPopup('Formulir Belum Lengkap', 'Silakan isi semua kolom formulir sebelum mengirim pesan.', 'warning');
+                        return;
+                    }
+
+                    // VALIDASI REGEX EMAIL STRICT (WAJIB MEMILIKI @ DAN DOMAIN VALID)
+                    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                    if (!emailRegex.test(emailInput)) {
+                        showCustomPopup('Format Email Salah', 'Email harus mengandung karakter @ dan nama domain yang valid (contoh: nama@gmail.com).', 'warning');
+                        return;
+                    }
+
                     const submitBtn = document.getElementById('submitBtn');
                     const originalBtnContent = submitBtn.innerHTML;
                     
@@ -1495,13 +1592,13 @@
                         });
 
                         if (response.ok) {
-                            alert('Terima kasih! Pesan Anda telah berhasil terkirim langsung ke email Razalfa Aindi Siregar.');
+                            showCustomPopup('Pesan Terkirim!', 'Terima kasih. Pesan Anda telah berhasil masuk ke email Razalfa Aindi Siregar.', 'success');
                             contactForm.reset();
                         } else {
-                            alert('Maaf, terjadi kesalahan saat mengirim pesan. Silakan coba lagi.');
+                            showCustomPopup('Gagal Mengirim', 'Terjadi kesalahan sistem saat mengirim pesan. Silakan coba lagi nanti.', 'danger');
                         }
                     } catch (error) {
-                        alert('Gagal terhubung ke server. Periksa kembali koneksi internet Anda.');
+                        showCustomPopup('Koneksi Terputus', 'Gagal terhubung ke server. Periksa kembali koneksi internet Anda.', 'danger');
                     } finally {
                         submitBtn.disabled = false;
                         submitBtn.innerHTML = originalBtnContent;
