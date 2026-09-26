@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="id" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Razalfa Aindi Siregar — Web Developer & UI/UX Designer</title>
+    
+    <!-- Meta SEO -->
+    <meta name="description" content="Portofolio resmi Razalfa Aindi Siregar - Web Developer & UI/UX Designer dari Huta Pondok Berastagi.">
+    
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Devicon Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
+    <style>
+        /* ============================================================
+           CSS VARIABLES & GLASSMORPHISM DESIGN SYSTEM
+        ============================================================ */
+        :root {
+            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            
+            /* Dark Theme Variables (Default) */
+            --bg-body: #0b0f17;
+            --bg-glass: rgba(18, 24, 38, 0.6);
+            --bg-glass-hover: rgba(28, 36, 56, 0.85);
+            --bg-dropdown-mobile: rgba(11, 15, 23, 0.95);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --border-glass-hover: rgba(99, 102, 241, 0.4);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-primary: #6366f1;
+            --accent-secondary: #818cf8;
+            --accent-glow: rgba(99, 102, 241, 0.25);
+            --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            --navbar-bg: rgba(11, 15, 23, 0.85);
+        }
+
+        [data-bs-theme="light"] {
+            --bg-body: #f8fafc;
+            --bg-glass: rgba(255, 255, 255, 0.65);
+            --bg-glass-hover: rgba(255, 255, 255, 0.9);
+            --bg-dropdown-mobile: rgba(255, 255, 255, 0.95);
+            --border-glass: rgba(0, 0, 0, 0.08);
+            --border-glass-hover: rgba(99, 102, 241, 0.3);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --accent-primary: #4f46e5;
+            --accent-secondary: #6366f1;
+            --accent-glow: rgba(79, 70, 229, 0.15);
+            --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+            --navbar-bg: rgba(248, 250, 252, 0.85);
+        }
+
+        /* MEMATIKAN SELEKSI TEKS SELURUH HALAMAN */
+        * {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* IJINKAN SELEKSI TEKS HANYA DI INPUT / FORM */
+        input, textarea {
+            -webkit-user-select: text !important;
+            -moz-user-select: text !important;
+            -ms-user-select: text !important;
+            user-select: text !important;
+        }
+
+        /* FIX SMOOTH SCROLLING & HEADER OVERLAP */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            transition: background-color 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Ambient Background Gradients */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .ambient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            transition: all 0.5s ease;
+        }
+
+        .orb-1 {
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: var(--accent-primary);
+        }
+
+        .orb-2 {
+            bottom: 10%;
+            right: -10%;
+            width: 45vw;
+            height: 45vw;
+            background: #a855f7;
+        }
+
+        /* Section Spacing & Margin Fix */
+        section {
+            padding: clamp(3.5rem, 8vw, 6rem) 0;
+            scroll-margin-top: 80px;
+        }
+
+        /* Custom Glass Card */
+        .glass-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                        border-color 0.3s ease, 
+                        box-shadow 0.3s ease,
+                        background-color 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: var(--border-glass-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px -10px var(--accent-glow);
+            background: var(--bg-glass-hover);
+        }
+
+        /* Section Headings */
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 30px;
+            background: var(--accent-glow);
+            color: var(--accent-primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            max-width: 580px;
+            font-size: clamp(0.95rem, 2vw, 1.05rem);
+        }
+
+        /* NAVBAR DESIGN */
+        .navbar-custom {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            background: var(--navbar-bg) !important;
+            backdrop-filter: blur(16px) !important;
+            -webkit-backdrop-filter: blur(16px) !important;
+            border-bottom: 1px solid var(--border-glass) !important;
+            padding: 0.85rem 0 !important;
+            transition: all 0.3s ease !important;
+            z-index: 99999 !important;
+        }
+
+        .navbar-custom.scrolled {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: var(--text-primary) !important;
+            letter-spacing: -0.02em;
+        }
+
+        /* Styles Navigasi Laptop / Desktop */
+        .desktop-nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .desktop-nav-link {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.5rem 0.85rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border-radius: 10px;
+            white-space: nowrap;
+        }
+
+        .desktop-nav-link:hover, .desktop-nav-link.active {
+            color: var(--accent-primary);
+            background: var(--accent-glow);
+        }
+
+        .nav-cta-btn {
+            background: var(--accent-primary);
+            color: #ffffff !important;
+            padding: 8px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 15px var(--accent-glow);
+            text-decoration: none;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .nav-cta-btn:hover {
+            background: var(--accent-secondary);
+            transform: translateY(-1px);
+        }
+
+        /* Styles Navigasi Mobile / HP */
+        .mobile-dropdown-glass {
+            background: var(--bg-dropdown-mobile) !important;
+            backdrop-filter: blur(20px) saturate(180%) !important;
+            -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+            border: 1px solid var(--border-glass) !important;
+            border-radius: 16px;
+            padding: 1rem;
+            margin-top: 0.75rem;
+            box-shadow: var(--card-shadow);
+            transition: background-color 0.4s ease, border-color 0.4s ease;
+        }
+
+        .mobile-nav-link {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.75rem 1rem;
+            display: block;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.22s ease;
+        }
+
+        .mobile-nav-link:hover, .mobile-nav-link.active {
+            color: var(--accent-primary);
+            background: var(--accent-glow);
+        }
+
+        /* MEDIA QUERY */
+        @media (min-width: 992px) {
+            #mobileNavbarMenu, .mobile-dropdown-glass, .navbar-toggler {
+                display: none !important;
+            }
+            .desktop-nav-menu {
+                display: flex !important;
+            }
+        }
+
+        @media (max-width: 991.98px) {
+            .desktop-nav-menu {
+                display: none !important;
+            }
+        }
+
+        /* Theme Toggle Button */
+        .theme-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--border-glass);
+            background: var(--bg-glass);
+            color: var(--text-primary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .theme-btn:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        /* Hero Section Spacing */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 120px;
+            scroll-margin-top: 0px;
+        }
+
+        .profile-img-container {
+            position: relative;
+            width: clamp(180px, 25vw, 260px);
+            height: clamp(180px, 25vw, 260px);
+            margin: 0 auto;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--border-glass);
+            box-shadow: 0 20px 40px var(--accent-glow);
+            pointer-events: none;
+        }
+
+        .status-badge {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: var(--bg-glass);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-glass);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #10b981;
+            animation: pulse-green 2s infinite;
+        }
+
+        @keyframes pulse-green {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        /* Buttons */
+        .btn-primary-custom {
+            background: var(--accent-primary);
+            color: #ffffff;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px var(--accent-glow);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary-custom:hover {
+            background: var(--accent-secondary);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px var(--accent-glow);
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-glass);
+            padding: 12px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-outline-custom:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            background: var(--accent-glow);
+        }
+
+        /* Stats Badge */
+        .stat-card {
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 800;
+            color: var(--accent-primary);
+            line-height: 1.1;
+        }
+
+        .stat-label {
+            font-size: 0.825rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        /* Skills Section */
+        .skill-item {
+            padding: 1.25rem;
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+            display: inline-block;
+        }
+
+        .progress-thin {
+            height: 6px;
+            background: rgba(148, 163, 184, 0.15);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 10px;
+            width: 0%;
+            transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Filter Pills */
+        .filter-btn {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            color: var(--text-secondary);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--accent-primary);
+            color: #ffffff;
+            border-color: var(--accent-primary);
+        }
+
+        /* Project Cards */
+        .project-card {
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-img-wrapper {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            pointer-events: none;
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.05);
+        }
+
+        .project-body {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .tech-badge {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: rgba(148, 163, 184, 0.1);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-glass);
+            font-weight: 500;
+        }
+
+        /* Timeline / Experience */
+        .timeline-container {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-glass);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2rem;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--bg-body);
+            border: 3px solid var(--accent-primary);
+        }
+
+        /* Contact Links */
+        .contact-link-card {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem;
+        }
+
+        .contact-link-card:hover .contact-info-icon {
+            background: var(--accent-primary);
+            color: #ffffff;
+            transform: scale(1.05);
+        }
+
+        .contact-info-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--accent-glow);
+            color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .form-control-glass {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            color: var(--text-primary);
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+        }
+
+        .form-control-glass:focus {
+            background: var(--bg-glass-hover);
+            border-color: var(--accent-primary);
+            color: var(--text-primary);
+            box-shadow: 0 0 0 4px var(--accent-glow);
+            outline: none;
+        }
+
+        .form-control-glass::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-glass);
+            padding: 2.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Floating Back To Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            color: #ffffff;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 20px var(--accent-glow);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 99;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-4px);
+            background: var(--accent-secondary);
+            color: #ffffff;
+        }
+
+        /* Modal Glass Override */
+        .modal-content-glass {
+            background: var(--bg-body);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+    <!-- Ambient Background Lighting -->
+    <div class="ambient-bg">
+        <div class="ambient-orb orb-1"></div>
+        <div class="ambient-orb orb-2"></div>
+    </div>
+
+    <!-- HEADER / NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-custom" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+                <span style="color: var(--accent-primary);"><i class="fa-solid fa-code"></i></span>
+                Razalfa Aindi Siregar
+            </a>
+            
+            <div class="d-flex align-items-center gap-2 order-lg-3">
+                <!-- Theme Toggle Button -->
+                <button class="theme-btn" id="themeToggleBtn" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon" id="themeIcon"></i>
+                </button>
+                
+                <!-- CTA Button Desktop (Laptop) -->
+                <a class="nav-cta-btn d-none d-lg-inline-block ms-2" href="#contact">Hubungi Saya</a>
+
+                <!-- Tombol Hamburger HP -->
+                <button class="navbar-toggler border-0 p-2 text-primary d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavbarMenu" aria-controls="mobileNavbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa-solid fa-bars fs-4"></i>
+                </button>
+            </div>
+
+            <!-- TAMPILAN LAPTOP / DESKTOP -->
+            <div class="desktop-nav-menu mx-auto order-lg-2">
+                <a class="desktop-nav-link active" href="#home">Home</a>
+                <a class="desktop-nav-link" href="#about">Tentang Saya</a>
+                <a class="desktop-nav-link" href="#skills">Keahlian</a>
+                <a class="desktop-nav-link" href="#projects">Portofolio</a>
+                <a class="desktop-nav-link" href="#experience">Pengalaman</a>
+            </div>
+
+            <!-- TAMPILAN MOBILE / HP -->
+            <div class="collapse navbar-collapse d-lg-none w-100" id="mobileNavbarMenu">
+                <div class="mobile-dropdown-glass">
+                    <div class="d-flex flex-column gap-1">
+                        <a class="mobile-nav-link active" href="#home">Home</a>
+                        <a class="mobile-nav-link" href="#about">Tentang Saya</a>
+                        <a class="mobile-nav-link" href="#skills">Keahlian</a>
+                        <a class="mobile-nav-link" href="#projects">Portofolio</a>
+                        <a class="mobile-nav-link" href="#experience">Pengalaman</a>
+                        <hr class="border-secondary opacity-25 my-2">
+                        <a class="nav-cta-btn text-center w-100" href="#contact">Hubungi Saya</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-7 order-2 order-lg-1 hero-content">
+                    <!-- TAG UCAPAN DENGAN SIMBOL WAKTU -->
+                    <div class="section-tag mb-3" id="greetingBadge">
+                        <span id="timeIcon"><i class="fa-solid fa-sun text-warning"></i></span>
+                        <span id="greetingText">Selamat Datang</span>
+                    </div>
+
+                    <h1 class="display-4 fw-extrabold mb-3" style="letter-spacing: -0.03em;">
+                        Halo, Saya <br>
+                        <span style="color: var(--accent-primary);">Razalfa Aindi Siregar</span>
+                    </h1>
+                    <h2 class="h4 text-secondary mb-4 font-weight-normal">
+                        Saya seorang <span id="typingText" class="fw-semibold text-primary"></span><span class="cursor">|</span>
+                    </h2>
+                    <p class="section-desc mb-4">
+                        Mengembangkan aplikasi web modern, mengajar kejuruan RPL, serta menciptakan konten multimedia berupa pengeditan video dan fotografi profesional.
+                    </p>
+
+                    <div class="d-flex flex-wrap gap-3 mb-5 hero-btns">
+                        <a href="#projects" class="btn btn-primary-custom d-inline-flex align-items-center gap-2">
+                            Lihat Karya <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-outline-custom d-inline-flex align-items-center gap-2">
+                            Hubungi Saya
+                        </a>
+                    </div>
+
+                    <!-- SOCIAL ICONS -->
+                    <div class="d-flex align-items-center gap-3 social-container">
+                        <span class="text-muted small font-weight-semibold">Ikuti Saya:</span>
+                        <a href="https://github.com/wibumylife" target="_blank" class="theme-btn text-decoration-none" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.tiktok.com/@razalfasiregar" target="_blank" class="theme-btn text-decoration-none" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/razalfasiregar" target="_blank" class="theme-btn text-decoration-none" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://wa.me/6281360624398" target="_blank" class="theme-btn text-decoration-none" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- PROFILE PICTURE -->
+                <div class="col-lg-5 order-1 order-lg-2 text-center">
+                    <div class="profile-img-container">
+                        <img src="assets/images/profile.jpg" alt="Razalfa Aindi Siregar" class="profile-img">
+                        <div class="status-badge">
+                            <span class="status-dot"></span>
+                            <span>Siap Bekerja</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <div class="container">
+            <div class="row gy-4 align-items-center">
+                <div class="col-lg-6">
+                    <div class="glass-card p-4 p-md-5">
+                        <div class="section-tag mb-2">Tentang Saya</div>
+                        <h2 class="section-title">Kombinasi Teknologi & Seni Visual</h2>
+                        <p class="text-secondary mb-3">
+                            Saya adalah seorang <strong>Pengajar Kejuruan RPL, Web Developer, UI/UX Designer, serta Content Creator (Videographer & Photographer)</strong> yang berdomisili di Huta Pondok Berastagi. 
+                        </p>
+                        <p class="text-secondary mb-0">
+                            Berdedikasi dalam menggabungkan fondasi rekayasa perangkat lunak dengan seni visual mutakhir. Selain aktif mengajar dan mengembangkan sistem web responsif, saya berfokus menciptakan karya sinematografi, penyuntingan video dinamis, serta fotografi visual yang estetik.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="glass-card stat-card">
+                                <div class="stat-number">3+</div>
+                                <div class="stat-label">Tahun Pengalaman</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="glass-card stat-card">
+                                <div class="stat-number">25+</div>
+                                <div class="stat-label">Proyek Selesai</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="glass-card stat-card">
+                                <div class="stat-number">15+</div>
+                                <div class="stat-label">Klien Puas</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="glass-card stat-card">
+                                <div class="stat-number">99%</div>
+                                <div class="stat-label">Ketepatan Waktu</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills">
+        <div class="container">
+            <div class="text-center mx-auto mb-5">
+                <div class="section-tag">Keahlian</div>
+                <h2 class="section-title">Teknologi & Multimedia</h2>
+                <p class="section-desc mx-auto">Tools, bahasa pemrograman, aplikasi desain/editing, serta teknik multimedia yang saya kuasai.</p>
+            </div>
+
+            <div class="row g-3 justify-content-center">
+                <!-- 1. HTML5 & CSS3 -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="glass-card skill-item">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <i class="devicon-html5-plain colored skill-icon"></i>
+                            <span class="small font-weight-bold text-muted skill-val">90%</span>
+                        </div>
+                        <h6 class="fw-semibold mb-1">HTML5 & CSS3</h6>
+                        <div class="progress-thin">
+                            <div class="progress-bar-fill" data-progress="90"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Bootstrap 5 -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="glass-card skill-item">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <i class="devicon-bootstrap-plain colored skill-icon"></i>
+                            <span class="small font-weight-bold text-muted skill-val">95%</span>
+                        </div>
+                        <h6 class="fw-semibold mb-1">Bootstrap 5</h6>
+                        <div class="progress-thin">
+                            <div class="progress-bar-fill" data-progress="95"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. phpMyAdmin -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="glass-card skill-item">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <i class="devicon-mysql-plain colored skill-icon"></i>
+                            <span class="small font-weight-bold text-muted skill-val">85%</span>
+                        </div>
+                        <h6 class="fw-semibold mb-1">phpMyAdmin</h6>
+                        <div class="progress-thin">
+                            <div class="progress-bar-fill" data-progress="85"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Git & GitHub -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="glass-card skill-item">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <i class="devicon-github-original skill-icon"></i>
+                            <span class="small font-weight-bold text-muted skill-val">90%</span>
+                        </div>
+                        <h6 class="fw-semibold mb-1">Git & GitHub</h6>
+                        <div class="progress-thin">
+                            <div class="progress-bar-fill" data-progress="90"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. UI/UX Design -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="glass-card skill-item">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <i class="devicon-figma-plain colored skill-icon"></i>
+                            <span class="small font-weight-bold text-muted skill-val">88%</span>
+                        </div>
+                        <h6 class="fw-semibold mb-1">UI/UX Design</h6>
+                        <div class="progress-thin">
+                            <div class="progress-bar-fill" data-progress="88"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. CapCut -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="glass-card skill-item">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <i class="fa-solid fa-video text-info skill-icon"></i>
+                            <span class="small font-weight-bold text-muted skill-val">88%</span>
+                        </div>
+                        <h6 class="fw-semibold mb-1">CapCut</h6>
+                        <div class="progress-thin">
+                            <div class="progress-bar-fill" data-progress="88"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. Filmora -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="glass-card skill-item">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <i class="fa-solid fa-film text-warning skill-icon"></i>
+                            <span class="small font-weight-bold text-muted skill-val">85%</span>
+                        </div>
+                        <h6 class="fw-semibold mb-1">Filmora</h6>
+                        <div class="progress-thin">
+                            <div class="progress-bar-fill" data-progress="85"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. Canva -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="glass-card skill-item">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <i class="fa-solid fa-palette text-primary skill-icon"></i>
+                            <span class="small font-weight-bold text-muted skill-val">92%</span>
+                        </div>
+                        <h6 class="fw-semibold mb-1">Canva</h6>
+                        <div class="progress-thin">
+                            <div class="progress-bar-fill" data-progress="92"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. Photography -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="glass-card skill-item">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <i class="fa-solid fa-camera text-success skill-icon"></i>
+                            <span class="small font-weight-bold text-muted skill-val">90%</span>
+                        </div>
+                        <h6 class="fw-semibold mb-1">Photography</h6>
+                        <div class="progress-thin">
+                            <div class="progress-bar-fill" data-progress="90"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10. Videographer -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="glass-card skill-item">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <i class="fa-solid fa-clapperboard text-danger skill-icon"></i>
+                            <span class="small font-weight-bold text-muted skill-val">88%</span>
+                        </div>
+                        <h6 class="fw-semibold mb-1">Videographer</h6>
+                        <div class="progress-thin">
+                            <div class="progress-bar-fill" data-progress="88"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS / PORTOFOLIO SECTION -->
+    <section id="projects">
+        <div class="container">
+            <div class="text-center mx-auto mb-4">
+                <div class="section-tag">Portofolio</div>
+                <h2 class="section-title">Proyek Terbaru</h2>
+                <p class="section-desc mx-auto">Beberapa hasil karya terbaik yang pernah saya selesaikan baru-baru ini.</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="d-flex justify-content-center flex-wrap gap-2 mb-5">
+                <button class="filter-btn active" data-filter="all">Semua</button>
+                <button class="filter-btn" data-filter="web">Web App</button>
+                <button class="filter-btn" data-filter="design">Video & Photo</button>
+            </div>
+
+            <div class="row g-4" id="projectGrid">
+                <!-- PROYEK 1: TABUNGAN MURID -->
+                <div class="col-md-6 col-lg-4 project-item" data-category="web">
+                    <div class="glass-card project-card">
+                        <div class="project-img-wrapper">
+                            <img src="assets/images/project1.jpg" alt="Aplikasi Tabungan Murid" class="project-img">
+                        </div>
+                        <div class="project-body">
+                            <div class="d-flex gap-2 mb-2">
+                                <span class="tech-badge">Web App</span>
+                                <span class="tech-badge">Bootstrap</span>
+                            </div>
+                            <h5 class="fw-bold mb-2">Aplikasi Tabungan Murid</h5>
+                            <p class="text-secondary small mb-3">Sistem pengelolaan data tabungan siswa berbasis web yang efisien, transparan, dan mudah digunakan.</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center pt-2">
+                                <button class="btn btn-link text-primary p-0 text-decoration-none font-weight-semibold btn-detail" data-bs-toggle="modal" data-bs-target="#projectModal" data-title="Aplikasi Tabungan Murid" data-desc="Sistem pengelolaan data tabungan siswa berbasis web yang efisien, transparan, dan mudah digunakan." data-tech="HTML5, CSS3, JavaScript, Bootstrap 5" data-link="https://tabungan-murid.vercel.app/">Detail <i class="fa-solid fa-arrow-right small"></i></button>
+                                <a href="https://tabungan-murid.vercel.app/" target="_blank" class="theme-btn text-decoration-none" style="width:32px; height:32px;" title="Kunjungi Website"><i class="fa-solid fa-arrow-up-right-from-square small"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROYEK 2: VIDEO EDITOR & VIDEOGRAPHER -->
+                <div class="col-md-6 col-lg-4 project-item" data-category="design">
+                    <div class="glass-card project-card">
+                        <div class="project-img-wrapper">
+                            <img src="assets/images/project2.jpg" alt="Video Editor Showreel" class="project-img">
+                        </div>
+                        <div class="project-body">
+                            <div class="d-flex gap-2 mb-2">
+                                <span class="tech-badge">Videographer</span>
+                                <span class="tech-badge">CapCut</span>
+                            </div>
+                            <h5 class="fw-bold mb-2">Video Editing & Motion Content</h5>
+                            <p class="text-secondary small mb-3">Hasil karya pengambilan video sinematik serta penyuntingan dengan transisi halus dan narasi visual menarik.</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center pt-2">
+                                <button class="btn btn-link text-primary p-0 text-decoration-none font-weight-semibold btn-detail" data-bs-toggle="modal" data-bs-target="#projectModal" data-title="Video Editing & Motion Content" data-desc="Hasil karya pengambilan video sinematik serta penyuntingan dengan transisi halus dan narasi visual menarik." data-tech="Videography, CapCut, Filmora, Sound Design" data-link="https://vt.tiktok.com/ZSbYtjpfq/">Detail <i class="fa-solid fa-arrow-right small"></i></button>
+                                <a href="https://vt.tiktok.com/ZSbYtjpfq/" target="_blank" class="theme-btn text-decoration-none" style="width:32px; height:32px;" title="Tonton di TikTok"><i class="fa-solid fa-arrow-up-right-from-square small"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROYEK 3: PHOTOGRAPHY -->
+                <div class="col-md-6 col-lg-4 project-item" data-category="design">
+                    <div class="glass-card project-card">
+                        <div class="project-img-wrapper">
+                            <img src="assets/images/project3.jpg" alt="Photography Collection" class="project-img">
+                        </div>
+                        <div class="project-body">
+                            <div class="d-flex gap-2 mb-2">
+                                <span class="tech-badge">Photography</span>
+                                <span class="tech-badge">Visual Art</span>
+                            </div>
+                            <h5 class="fw-bold mb-2">Photography & Visual Art</h5>
+                            <p class="text-secondary small mb-3">Koleksi fotografi komersial dan pemandangan dengan komposisi pencahayaan serta sudut pandang estetik.</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center pt-2">
+                                <button class="btn btn-link text-primary p-0 text-decoration-none font-weight-semibold btn-detail" data-bs-toggle="modal" data-bs-target="#projectModal" data-title="Photography & Visual Art" data-desc="Koleksi fotografi komersial dan pemandangan dengan komposisi pencahayaan serta sudut pandang estetik." data-tech="Photography, Composition, Color Grading" data-link="">Detail <i class="fa-solid fa-arrow-right small"></i></button>
+                                <span class="text-muted small italic">Koleksi Galeri</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION (DENGAN NAMA PERUMDA TIRTA ULI PEMATANG SIANTAR KAPITAL) -->
+    <section id="experience">
+        <div class="container">
+            <div class="row gy-5 align-items-center">
+                <div class="col-lg-5">
+                    <div class="section-tag">Pengalaman</div>
+                    <h2 class="section-title">Perjalanan Karir Saya</h2>
+                    <p class="text-secondary mb-4">Pengalaman kerja profesional di dunia pendidikan kejuruan dan lingkungan perusahaan daerah.</p>
+                    <a href="#contact" class="btn btn-primary-custom">Diskusi Proyek Baru</a>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="timeline-container">
+                        <!-- PENGALAMAN 1: SMK SWASTA PRAMA ARTHA -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="glass-card p-4">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h5 class="fw-bold mb-0">Guru Kejuruan RPL</h5>
+                                    <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2">2025 - Sekarang</span>
+                                </div>
+                                <div class="text-muted small mb-3">SMK SWASTA PRAMA ARTHA BANDAR HULUAN</div>
+                                <p class="text-secondary small mb-0">Mengajar mata pelajaran kejuruan Rekayasa Perangkat Lunak (RPL), membimbing siswa dalam pemahaman logika pemrograman, web development, dan teknologi basis data.</p>
+                            </div>
+                        </div>
+
+                        <!-- PENGALAMAN 2: PERUMDA TIRTA ULI PEMATANG SIANTAR (HURUF KAPITAL) -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="glass-card p-4">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h5 class="fw-bold mb-0">Praktik Kerja Lapangan (PKL)</h5>
+                                    <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2">2023 (3 Bulan)</span>
+                                </div>
+                                <div class="text-muted small mb-3">PERUMDA TIRTA ULI PEMATANG SIANTAR</div>
+                                <p class="text-secondary small mb-0">Melaksanakan Praktik Kerja Lapangan semasa kuliah, berkontribusi dalam pengelolaan data digital, pemeliharaan sistem informasi, dan dokumentasi operasional perusahaan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <div class="container">
+            <div class="text-center mx-auto mb-5">
+                <div class="section-tag">Hubungi Saya</div>
+                <h2 class="section-title">Mari Bekerja Sama</h2>
+                <p class="section-desc mx-auto">Klik salah satu kontak di bawah untuk terhubung langsung dengan saya.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <div class="d-flex flex-column gap-3">
+                        <a href="mailto:razalfaaindi@gmail.com" class="glass-card contact-link-card">
+                            <div class="contact-info-icon">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <div class="small text-muted font-weight-semibold">Kirim Email Langsung</div>
+                                <div class="fw-bold text-primary">razalfaaindi@gmail.com</div>
+                            </div>
+                        </a>
+
+                        <a href="https://wa.me/6281360624398" target="_blank" class="glass-card contact-link-card">
+                            <div class="contact-info-icon">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <div class="small text-muted font-weight-semibold">Chat WhatsApp / Telepon</div>
+                                <div class="fw-bold text-primary">+62 813-6062-4398</div>
+                            </div>
+                        </a>
+
+                        <a href="https://www.google.com/maps/search/?api=1&query=Huta+Pondok+Berastagi" target="_blank" class="glass-card contact-link-card">
+                            <div class="contact-info-icon">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <div class="small text-muted font-weight-semibold">Lokasi Domisili (Google Maps)</div>
+                                <div class="fw-bold text-primary">Huta Pondok Berastagi</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="glass-card p-4 p-md-5">
+                        <form id="contactForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small text-muted font-weight-semibold">Nama Lengkap</label>
+                                    <input type="text" class="form-control form-control-glass" placeholder="Masukkan nama Anda" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small text-muted font-weight-semibold">Alamat Email</label>
+                                    <input type="email" class="form-control form-control-glass" placeholder="nama@email.com" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small text-muted font-weight-semibold">Subjek</label>
+                                    <input type="text" class="form-control form-control-glass" placeholder="Diskusi Proyek / Penawaran Kerja" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small text-muted font-weight-semibold">Pesan Anda</label>
+                                    <textarea class="form-control form-control-glass" rows="4" placeholder="Tuliskan detail pesan Anda..." required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary-custom w-100 py-3 d-flex justify-content-center align-items-center gap-2">
+                                        <i class="fa-solid fa-paper-plane"></i> Kirim Pesan
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 <span class="fw-bold text-primary">Razalfa Aindi Siregar</span>. All rights reserved. Berdomisili di Huta Pondok Berastagi.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to Top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- Modal Detail Proyek -->
+    <div class="modal fade" id="projectModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-content-glass p-3">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold" id="modalTitle">Detail Proyek</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-secondary small mb-3" id="modalDesc"></p>
+                    <div class="p-3 glass-card rounded-3 mb-3">
+                        <span class="small text-muted d-block mb-1 font-weight-semibold">Teknologi Terintegrasi:</span>
+                        <span class="fw-bold text-primary small" id="modalTech"></span>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-outline-custom btn-sm" data-bs-dismiss="modal">Tutup</button>
+                    <a href="#" id="modalLiveDemoBtn" target="_blank" class="btn btn-primary-custom btn-sm">Lihat Karya</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JavaScript Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ANTI-COPY & DEVTOOLS DISABLE
+            document.addEventListener('keydown', (e) => {
+                if (
+                    e.keyCode === 123 || 
+                    (e.ctrlKey && e.keyCode === 67) || 
+                    (e.ctrlKey && e.keyCode === 85) || 
+                    (e.ctrlKey && e.keyCode === 83) || 
+                    (e.ctrlKey && e.shiftKey && e.keyCode === 73) ||
+                    (e.metaKey && e.keyCode === 67)
+                ) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+            // LOGIKA DYNAMIC TIME GREETING & ICON (PAGI, SIANG, SORE, MALAM)
+            function updateDynamicGreeting() {
+                const now = new Date();
+                const hours = now.getHours();
+                const timeIconElem = document.getElementById('timeIcon');
+                const greetingTextElem = document.getElementById('greetingText');
+
+                if (hours >= 5 && hours < 11) {
+                    timeIconElem.innerHTML = '<i class="fa-solid fa-sun text-warning"></i>';
+                    greetingTextElem.textContent = 'Selamat Pagi';
+                } else if (hours >= 11 && hours < 15) {
+                    timeIconElem.innerHTML = '<i class="fa-solid fa-sun text-danger"></i>';
+                    greetingTextElem.textContent = 'Selamat Siang';
+                } else if (hours >= 15 && hours < 19) {
+                    timeIconElem.innerHTML = '<i class="fa-solid fa-cloud-sun text-warning"></i>';
+                    greetingTextElem.textContent = 'Selamat Sore';
+                } else {
+                    timeIconElem.innerHTML = '<i class="fa-solid fa-moon text-info"></i>';
+                    greetingTextElem.textContent = 'Selamat Malam';
+                }
+            }
+            updateDynamicGreeting();
+
+            // 1. Theme Toggle
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
+            const themeIcon = document.getElementById('themeIcon');
+            const htmlElem = document.documentElement;
+
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = htmlElem.getAttribute('data-bs-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                htmlElem.setAttribute('data-bs-theme', newTheme);
+                
+                themeIcon.className = newTheme === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+                localStorage.setItem('theme', newTheme);
+            });
+
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            htmlElem.setAttribute('data-bs-theme', savedTheme);
+            themeIcon.className = savedTheme === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+
+            // 2. NAVBAR SCROLL SHADOW EFFECT
+            const mainNavbar = document.getElementById('mainNavbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    mainNavbar.classList.add('scrolled');
+                } else {
+                    mainNavbar.classList.remove('scrolled');
+                }
+            });
+
+            // 3. NAVIGASI SMOOTH SCROLLING & TUTUP MENU HP SAAT DIKLIK
+            const mobileMenu = document.getElementById('mobileNavbarMenu');
+            const allNavLinks = document.querySelectorAll('.desktop-nav-link, .mobile-nav-link, .nav-cta-btn');
+
+            allNavLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetId = link.getAttribute('href');
+
+                    if (targetId && targetId.startsWith('#')) {
+                        e.preventDefault();
+                        
+                        document.querySelectorAll('.desktop-nav-link, .mobile-nav-link').forEach(l => l.classList.remove('active'));
+                        link.classList.add('active');
+
+                        if (mobileMenu && mobileMenu.classList.contains('show')) {
+                            const bsCollapse = bootstrap.Collapse.getInstance(mobileMenu);
+                            if (bsCollapse) {
+                                bsCollapse.hide();
+                            }
+                        }
+
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+
+            // 4. Dynamic Typing Effect
+            const words = ["Guru Kejuruan RPL", "Web Developer", "UI/UX Designer", "Videographer & Photographer"];
+            let wordIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            const typingTextElem = document.getElementById('typingText');
+
+            function typeEffect() {
+                const currentWord = words[wordIndex];
+                
+                if (isDeleting) {
+                    charIndex--;
+                    typingTextElem.textContent = currentWord.substring(0, charIndex);
+                } else {
+                    charIndex++;
+                    typingTextElem.textContent = currentWord.substring(0, charIndex);
+                }
+
+                if (!isDeleting && charIndex === currentWord.length) {
+                    isDeleting = true;
+                    setTimeout(typeEffect, 1800);
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                    setTimeout(typeEffect, 400);
+                } else {
+                    setTimeout(typeEffect, isDeleting ? 50 : 100);
+                }
+            }
+            typeEffect();
+
+            // 5. Animated Progress Bars on Scroll
+            const skillsSection = document.getElementById('skills');
+            const progressBars = document.querySelectorAll('.progress-bar-fill');
+            let animated = false;
+
+            const skillsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !animated) {
+                        progressBars.forEach(bar => {
+                            const targetVal = bar.getAttribute('data-progress');
+                            bar.style.width = targetVal + '%';
+                        });
+                        animated = true;
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            if (skillsSection) {
+                skillsObserver.observe(skillsSection);
+            }
+
+            // 6. Project Category Filtering
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectItems = document.querySelectorAll('.project-item');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    projectItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // 7. Project Modal Data Populate
+            const projectModal = document.getElementById('projectModal');
+            if (projectModal) {
+                projectModal.addEventListener('show.bs.modal', (event) => {
+                    const button = event.relatedTarget;
+                    const title = button.getAttribute('data-title');
+                    const desc = button.getAttribute('data-desc');
+                    const tech = button.getAttribute('data-tech');
+                    const link = button.getAttribute('data-link');
+
+                    document.getElementById('modalTitle').textContent = title;
+                    document.getElementById('modalDesc').textContent = desc;
+                    document.getElementById('modalTech').textContent = tech;
+
+                    const liveDemoBtn = document.getElementById('modalLiveDemoBtn');
+                    if (link && link.trim() !== "") {
+                        liveDemoBtn.style.display = 'inline-block';
+                        liveDemoBtn.setAttribute('href', link);
+                    } else {
+                        liveDemoBtn.style.display = 'none';
+                    }
+                });
+            }
+
+            // 8. Back to Top Button
+            const backToTopBtn = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // 9. Contact Form Submit
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('Terima kasih! Pesan Anda telah terkirim kepada Razalfa Aindi Siregar.');
+                    e.target.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
