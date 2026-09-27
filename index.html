@@ -90,8 +90,8 @@
             background-color: var(--bg-body);
             color: var(--text-primary);
             transition: background-color 0.4s ease, color 0.4s ease;
-            overflow-x: hidden;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Ambient Background Gradients */
@@ -99,10 +99,10 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             z-index: -1;
-            pointer-events: none;
+            pointer-events: none !important;
             overflow: hidden;
         }
 
@@ -112,6 +112,7 @@
             filter: blur(120px);
             opacity: 0.15;
             transition: all 0.5s ease;
+            pointer-events: none !important;
         }
 
         .orb-1 {
@@ -332,13 +333,34 @@
             color: var(--accent-primary);
         }
 
-        /* Hero Section Spacing */
+        /* Hero Section Spacing & Layout Lock */
         .hero-section {
             min-height: 100vh;
             display: flex;
             align-items: center;
             padding-top: 120px;
             scroll-margin-top: 0px;
+        }
+
+        /* KUNCI TINGGI AREA TYPING MENCEGAH ELEMEN TURUN/LONCAT */
+        .hero-subtitle-box {
+            min-height: 3.2rem;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .cursor {
+            display: inline-block;
+            margin-left: 2px;
+            animation: blinkCursor 0.8s infinite;
+            color: var(--accent-primary);
+            font-weight: 300;
+        }
+
+        @keyframes blinkCursor {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         .profile-img-container {
@@ -454,23 +476,47 @@
             margin-top: 4px;
         }
 
-        /* Skills Section */
-        .skill-item {
-            padding: 1.25rem;
+        /* SKILLS SLIDER SPACING GAP */
+        .skill-slide-wrapper {
+            padding: 0.5rem 1rem 1.5rem 1rem;
+            max-width: 850px;
+            margin: 0 auto;
         }
 
-        .skill-icon {
-            font-size: 2rem;
+        .wide-skill-card {
+            padding: 2.5rem 2rem;
+            border-radius: 24px;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .wide-skill-icon-lg {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .wide-skill-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            background: var(--accent-glow);
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             margin-bottom: 0.75rem;
             display: inline-block;
         }
 
         .progress-thin {
-            height: 6px;
+            height: 8px;
             background: rgba(148, 163, 184, 0.15);
             border-radius: 10px;
             overflow: hidden;
-            margin-top: 8px;
+            margin-top: 10px;
         }
 
         .progress-bar-fill {
@@ -479,6 +525,34 @@
             border-radius: 10px;
             width: 0%;
             transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Custom Dots Indicators */
+        .custom-carousel-indicators {
+            position: relative !important;
+            margin-top: 1.5rem !important;
+            margin-bottom: 0 !important;
+            display: flex !important;
+            justify-content: center !important;
+            gap: 10px !important;
+        }
+
+        .custom-carousel-indicators [data-bs-target] {
+            width: 10px !important;
+            height: 10px !important;
+            border-radius: 50% !important;
+            background-color: var(--text-muted) !important;
+            border: none !important;
+            opacity: 0.4 !important;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        .custom-carousel-indicators .active {
+            width: 28px !important;
+            border-radius: 12px !important;
+            background-color: var(--accent-primary) !important;
+            opacity: 1 !important;
+            box-shadow: 0 0 12px var(--accent-glow) !important;
         }
 
         /* Filter Pills */
@@ -680,7 +754,7 @@
             color: var(--text-primary);
         }
 
-        /* STYLES KHUSUS POP-UP NOTIFIKASI CUSTOM (GLASSMORPHISM WITH BACKGROUND) */
+        /* STYLES KHUSUS POP-UP NOTIFIKASI CUSTOM */
         .custom-popup-card {
             background: var(--bg-glass-hover) !important;
             backdrop-filter: blur(20px) saturate(180%) !important;
@@ -795,9 +869,12 @@
                         Halo, Saya <br>
                         <span style="color: var(--accent-primary);">Razalfa Aindi Siregar</span>
                     </h1>
-                    <h2 class="h4 text-secondary mb-4 font-weight-normal">
-                        Saya seorang <span id="typingText" class="fw-semibold text-primary"></span><span class="cursor">|</span>
+                    
+                    <!-- PEMBUNGKUS LAYOUT DENGAN MIN-HEIGHT UNTUK CEGAH TEKS LONCAT -->
+                    <h2 class="h4 text-secondary mb-4 font-weight-normal hero-subtitle-box">
+                        Saya seorang&nbsp;<span id="typingText" class="fw-semibold text-primary"></span><span class="cursor">|</span>
                     </h2>
+
                     <p class="section-desc mb-4">
                         Mengembangkan aplikasi web modern, mengajar kejuruan RPL, serta menciptakan konten multimedia berupa pengeditan video dan fotografi profesional.
                     </p>
@@ -884,153 +961,238 @@
         </div>
     </section>
 
-    <!-- SKILLS SECTION -->
+    <!-- SKILLS SECTION (GESER OTOMATIS 5 DETIK) -->
     <section id="skills">
         <div class="container">
             <div class="text-center mx-auto mb-5 reveal-item">
                 <div class="section-tag">Keahlian</div>
                 <h2 class="section-title">Teknologi & Multimedia</h2>
-                <p class="section-desc mx-auto">Tools, bahasa pemrograman, aplikasi desain/editing, serta teknik multimedia yang saya kuasai.</p>
+                <p class="section-desc mx-auto">Penguasaan penuh terhadap pemrograman web, desain visual, kecerdasan buatan, hingga produksi multimedia.</p>
             </div>
 
-            <div class="row g-3 justify-content-center">
-                <!-- 1. HTML5 & CSS3 -->
-                <div class="col-6 col-md-4 col-lg-3 reveal-item">
-                    <div class="glass-card skill-item">
-                        <div class="d-flex align-items-center justify-content-between mb-2">
-                            <i class="devicon-html5-plain colored skill-icon"></i>
-                            <span class="small font-weight-bold text-muted skill-val">90%</span>
+            <div class="reveal-item">
+                <!-- DURASI GESER 5 DETIK (5000ms) -->
+                <div id="skillsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+                    <div class="carousel-inner">
+                        
+                        <!-- SLIDE 1: WEB FRONTEND -->
+                        <div class="carousel-item active">
+                            <div class="skill-slide-wrapper">
+                                <div class="glass-card wide-skill-card">
+                                    <div>
+                                        <span class="wide-skill-tag">Pilar Utama</span>
+                                        <div class="d-flex align-items-center gap-3 mb-2">
+                                            <i class="devicon-html5-plain colored wide-skill-icon-lg"></i>
+                                            <i class="devicon-css3-plain colored wide-skill-icon-lg"></i>
+                                            <i class="devicon-javascript-plain colored wide-skill-icon-lg"></i>
+                                            <i class="devicon-bootstrap-plain colored wide-skill-icon-lg"></i>
+                                        </div>
+                                        <h4 class="fw-bold mb-2">Web Frontend Development</h4>
+                                        <p class="text-secondary mb-4">Pengembangan antarmuka website modern, responsif, dan interaktif menggunakan standar HTML5, CSS3, JavaScript, dan Framework Bootstrap 5.</p>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex justify-content-between small font-weight-bold text-muted mb-1">
+                                            <span>Tingkat Penguasaan Frontend</span>
+                                            <span class="text-primary">92%</span>
+                                        </div>
+                                        <div class="progress-thin">
+                                            <div class="progress-bar-fill" data-progress="92"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <h6 class="fw-semibold mb-1">HTML5 & CSS3</h6>
-                        <div class="progress-thin">
-                            <div class="progress-bar-fill" data-progress="90"></div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- 2. Bootstrap 5 -->
-                <div class="col-6 col-md-4 col-lg-3 reveal-item">
-                    <div class="glass-card skill-item">
-                        <div class="d-flex align-items-center justify-content-between mb-2">
-                            <i class="devicon-bootstrap-plain colored skill-icon"></i>
-                            <span class="small font-weight-bold text-muted skill-val">95%</span>
+                        <!-- SLIDE 2: ARTIFICIAL INTELLIGENCE (AI) -->
+                        <div class="carousel-item">
+                            <div class="skill-slide-wrapper">
+                                <div class="glass-card wide-skill-card">
+                                    <div>
+                                        <span class="wide-skill-tag">Teknologi Modern</span>
+                                        <div class="d-flex align-items-center gap-3 mb-2">
+                                            <i class="fa-solid fa-brain text-info wide-skill-icon-lg"></i>
+                                        </div>
+                                        <h4 class="fw-bold mb-2">Artificial Intelligence (AI) Integration</h4>
+                                        <p class="text-secondary mb-4">Pemanfaatan tools AI modern untuk mempercepat alur kerja pengembangan perangkat lunak, otomatisasi tugas, riset, dan analisis data.</p>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex justify-content-between small font-weight-bold text-muted mb-1">
+                                            <span>Integrasi & Automasi AI</span>
+                                            <span class="text-primary">85%</span>
+                                        </div>
+                                        <div class="progress-thin">
+                                            <div class="progress-bar-fill" data-progress="85"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <h6 class="fw-semibold mb-1">Bootstrap 5</h6>
-                        <div class="progress-thin">
-                            <div class="progress-bar-fill" data-progress="95"></div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- 3. phpMyAdmin -->
-                <div class="col-6 col-md-4 col-lg-3 reveal-item">
-                    <div class="glass-card skill-item">
-                        <div class="d-flex align-items-center justify-content-between mb-2">
-                            <i class="devicon-mysql-plain colored skill-icon"></i>
-                            <span class="small font-weight-bold text-muted skill-val">85%</span>
+                        <!-- SLIDE 3: UI/UX DESIGN (FIGMA) -->
+                        <div class="carousel-item">
+                            <div class="skill-slide-wrapper">
+                                <div class="glass-card wide-skill-card">
+                                    <div>
+                                        <span class="wide-skill-tag">Desain Antarmuka</span>
+                                        <div class="d-flex align-items-center gap-3 mb-2">
+                                            <i class="devicon-figma-plain colored wide-skill-icon-lg"></i>
+                                        </div>
+                                        <h4 class="fw-bold mb-2">UI/UX Design & Wireframing</h4>
+                                        <p class="text-secondary mb-4">Perancangan tata letak antarmuka pengguna yang bersih, intuitif, dan estetik menggunakan Figma dengan standar wireframing dan interactive prototyping.</p>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex justify-content-between small font-weight-bold text-muted mb-1">
+                                            <span>Figma & Design System</span>
+                                            <span class="text-primary">88%</span>
+                                        </div>
+                                        <div class="progress-thin">
+                                            <div class="progress-bar-fill" data-progress="88"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <h6 class="fw-semibold mb-1">phpMyAdmin</h6>
-                        <div class="progress-thin">
-                            <div class="progress-bar-fill" data-progress="85"></div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- 4. Git & GitHub -->
-                <div class="col-6 col-md-4 col-lg-3 reveal-item">
-                    <div class="glass-card skill-item">
-                        <div class="d-flex align-items-center justify-content-between mb-2">
-                            <i class="devicon-github-original skill-icon"></i>
-                            <span class="small font-weight-bold text-muted skill-val">90%</span>
+                        <!-- SLIDE 4: VIDEO EDITING -->
+                        <div class="carousel-item">
+                            <div class="skill-slide-wrapper">
+                                <div class="glass-card wide-skill-card">
+                                    <div>
+                                        <span class="wide-skill-tag">Sinematografi</span>
+                                        <div class="d-flex align-items-center gap-3 mb-2">
+                                            <i class="fa-solid fa-video text-info wide-skill-icon-lg"></i>
+                                            <i class="fa-solid fa-film text-warning wide-skill-icon-lg"></i>
+                                        </div>
+                                        <h4 class="fw-bold mb-2">Video Editing (CapCut & Filmora)</h4>
+                                        <p class="text-secondary mb-4">Proses penyuntingan video dinamis, penyelarasan audio, efek transisi halus, serta pembuatan konten komersial multimedia.</p>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex justify-content-between small font-weight-bold text-muted mb-1">
+                                            <span>Post-Production & Motion Visual</span>
+                                            <span class="text-primary">88%</span>
+                                        </div>
+                                        <div class="progress-thin">
+                                            <div class="progress-bar-fill" data-progress="88"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <h6 class="fw-semibold mb-1">Git & GitHub</h6>
-                        <div class="progress-thin">
-                            <div class="progress-bar-fill" data-progress="90"></div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- 5. UI/UX Design -->
-                <div class="col-6 col-md-4 col-lg-3 reveal-item">
-                    <div class="glass-card skill-item">
-                        <div class="d-flex align-items-center justify-content-between mb-2">
-                            <i class="devicon-figma-plain colored skill-icon"></i>
-                            <span class="small font-weight-bold text-muted skill-val">88%</span>
+                        <!-- SLIDE 5: CANVA GRAPHIC DESIGN -->
+                        <div class="carousel-item">
+                            <div class="skill-slide-wrapper">
+                                <div class="glass-card wide-skill-card">
+                                    <div>
+                                        <span class="wide-skill-tag">Desain Grafis</span>
+                                        <div class="d-flex align-items-center gap-3 mb-2">
+                                            <i class="fa-solid fa-palette text-primary wide-skill-icon-lg"></i>
+                                        </div>
+                                        <h4 class="fw-bold mb-2">Canva Graphic Design</h4>
+                                        <p class="text-secondary mb-4">Pembuatan aset grafis pemasaran, konten media sosial, presentasi profesional, serta elemen visual yang komunikatif dan estetik.</p>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex justify-content-between small font-weight-bold text-muted mb-1">
+                                            <span>Aset Grafis & Presentasi</span>
+                                            <span class="text-primary">92%</span>
+                                        </div>
+                                        <div class="progress-thin">
+                                            <div class="progress-bar-fill" data-progress="92"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <h6 class="fw-semibold mb-1">UI/UX Design</h6>
-                        <div class="progress-thin">
-                            <div class="progress-bar-fill" data-progress="88"></div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- 6. CapCut -->
-                <div class="col-6 col-md-4 col-lg-3 reveal-item">
-                    <div class="glass-card skill-item">
-                        <div class="d-flex align-items-center justify-content-between mb-2">
-                            <i class="fa-solid fa-video text-info skill-icon"></i>
-                            <span class="small font-weight-bold text-muted skill-val">88%</span>
+                        <!-- SLIDE 6: TEKNISI HARDWARE -->
+                        <div class="carousel-item">
+                            <div class="skill-slide-wrapper">
+                                <div class="glass-card wide-skill-card">
+                                    <div>
+                                        <span class="wide-skill-tag">Infrastruktur Komputer</span>
+                                        <div class="d-flex align-items-center gap-3 mb-2">
+                                            <i class="fa-solid fa-screwdriver-wrench text-warning wide-skill-icon-lg"></i>
+                                        </div>
+                                        <h4 class="fw-bold mb-2">Teknisi Hardware & Maintenance</h4>
+                                        <p class="text-secondary mb-4">Perakitan PC, diagnosa kerusakan perangkat keras, instalasi sistem operasi, dan pemeliharaan rutin infrastruktur komputer.</p>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex justify-content-between small font-weight-bold text-muted mb-1">
+                                            <span>Perakitan & Diagnosa PC</span>
+                                            <span class="text-primary">87%</span>
+                                        </div>
+                                        <div class="progress-thin">
+                                            <div class="progress-bar-fill" data-progress="87"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <h6 class="fw-semibold mb-1">CapCut</h6>
-                        <div class="progress-thin">
-                            <div class="progress-bar-fill" data-progress="88"></div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- 7. Filmora -->
-                <div class="col-6 col-md-4 col-lg-3 reveal-item">
-                    <div class="glass-card skill-item">
-                        <div class="d-flex align-items-center justify-content-between mb-2">
-                            <i class="fa-solid fa-film text-warning skill-icon"></i>
-                            <span class="small font-weight-bold text-muted skill-val">85%</span>
+                        <!-- SLIDE 7: PHOTOGRAPHY & VIDEOGRAPHY -->
+                        <div class="carousel-item">
+                            <div class="skill-slide-wrapper">
+                                <div class="glass-card wide-skill-card">
+                                    <div>
+                                        <span class="wide-skill-tag">Visual Art</span>
+                                        <div class="d-flex align-items-center gap-3 mb-2">
+                                            <i class="fa-solid fa-camera text-success wide-skill-icon-lg"></i>
+                                            <i class="fa-solid fa-clapperboard text-danger wide-skill-icon-lg"></i>
+                                        </div>
+                                        <h4 class="fw-bold mb-2">Photography & Videography</h4>
+                                        <p class="text-secondary mb-4">Pengambilan gambar komersial dan rekaman sinematik dengan pengaturan pencahayaan, arah sudut pandang, serta komposisi visual yang presisi.</p>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex justify-content-between small font-weight-bold text-muted mb-1">
+                                            <span>Lighting & Visual Composition</span>
+                                            <span class="text-primary">90%</span>
+                                        </div>
+                                        <div class="progress-thin">
+                                            <div class="progress-bar-fill" data-progress="90"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <h6 class="fw-semibold mb-1">Filmora</h6>
-                        <div class="progress-thin">
-                            <div class="progress-bar-fill" data-progress="85"></div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- 8. Canva -->
-                <div class="col-6 col-md-4 col-lg-3 reveal-item">
-                    <div class="glass-card skill-item">
-                        <div class="d-flex align-items-center justify-content-between mb-2">
-                            <i class="fa-solid fa-palette text-primary skill-icon"></i>
-                            <span class="small font-weight-bold text-muted skill-val">92%</span>
+                        <!-- SLIDE 8: GIT & DATABASE -->
+                        <div class="carousel-item">
+                            <div class="skill-slide-wrapper">
+                                <div class="glass-card wide-skill-card">
+                                    <div>
+                                        <span class="wide-skill-tag">Sistem & Data</span>
+                                        <div class="d-flex align-items-center gap-3 mb-2">
+                                            <i class="devicon-github-original wide-skill-icon-lg"></i>
+                                            <i class="devicon-mysql-plain colored wide-skill-icon-lg"></i>
+                                        </div>
+                                        <h4 class="fw-bold mb-2">Git, GitHub & Basis Data</h4>
+                                        <p class="text-secondary mb-4">Pengelolaan repository versi menggunakan Git/GitHub serta manajemen basis data terstruktur menggunakan phpMyAdmin (MySQL).</p>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex justify-content-between small font-weight-bold text-muted mb-1">
+                                            <span>Version Control & MySQL</span>
+                                            <span class="text-primary">88%</span>
+                                        </div>
+                                        <div class="progress-thin">
+                                            <div class="progress-bar-fill" data-progress="88"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <h6 class="fw-semibold mb-1">Canva</h6>
-                        <div class="progress-thin">
-                            <div class="progress-bar-fill" data-progress="92"></div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- 9. Photography -->
-                <div class="col-6 col-md-4 col-lg-3 reveal-item">
-                    <div class="glass-card skill-item">
-                        <div class="d-flex align-items-center justify-content-between mb-2">
-                            <i class="fa-solid fa-camera text-success skill-icon"></i>
-                            <span class="small font-weight-bold text-muted skill-val">90%</span>
-                        </div>
-                        <h6 class="fw-semibold mb-1">Photography</h6>
-                        <div class="progress-thin">
-                            <div class="progress-bar-fill" data-progress="90"></div>
-                        </div>
                     </div>
-                </div>
 
-                <!-- 10. Videographer -->
-                <div class="col-6 col-md-4 col-lg-3 reveal-item">
-                    <div class="glass-card skill-item">
-                        <div class="d-flex align-items-center justify-content-between mb-2">
-                            <i class="fa-solid fa-clapperboard text-danger skill-icon"></i>
-                            <span class="small font-weight-bold text-muted skill-val">88%</span>
-                        </div>
-                        <h6 class="fw-semibold mb-1">Videographer</h6>
-                        <div class="progress-thin">
-                            <div class="progress-bar-fill" data-progress="88"></div>
-                        </div>
+                    <!-- INDIKATOR TITIK (DOTS) DI BAWAH SLIDER -->
+                    <div class="carousel-indicators custom-carousel-indicators">
+                        <button type="button" data-bs-target="#skillsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#skillsCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#skillsCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#skillsCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                        <button type="button" data-bs-target="#skillsCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                        <button type="button" data-bs-target="#skillsCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                        <button type="button" data-bs-target="#skillsCarousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
+                        <button type="button" data-bs-target="#skillsCarousel" data-bs-slide-to="7" aria-label="Slide 8"></button>
                     </div>
                 </div>
             </div>
@@ -1164,7 +1326,7 @@
         </div>
     </section>
 
-    <!-- CONTACT SECTION (DENGAN VALIDASI STRICT EMAIL @ & DOMAIN) -->
+    <!-- CONTACT SECTION -->
     <section id="contact">
         <div class="container">
             <div class="text-center mx-auto mb-5 reveal-item">
@@ -1176,7 +1338,8 @@
             <div class="row g-4">
                 <div class="col-lg-5 reveal-item">
                     <div class="d-flex flex-column gap-3">
-                        <a href="mailto:razalfaaindi@gmail.com" class="glass-card contact-link-card">
+                        <!-- DIRECT LINK GMAIL WEB -->
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=razalfaaindi@gmail.com" target="_blank" class="glass-card contact-link-card">
                             <div class="contact-info-icon">
                                 <i class="fa-solid fa-envelope"></i>
                             </div>
@@ -1241,10 +1404,10 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- FOOTER (TAHUN OTOMATIS) -->
     <footer>
         <div class="container text-center">
-            <p class="mb-0">&copy; 2026 <span class="fw-bold text-primary">Razalfa Aindi Siregar</span>. All rights reserved. Berdomisili di Huta Pondok Berastagi.</p>
+            <p class="mb-0">&copy; <span id="copyrightYear"></span> <span class="fw-bold text-primary">Razalfa Aindi Siregar</span>. All rights reserved. Berdomisili di Huta Pondok Berastagi.</p>
         </div>
     </footer>
 
@@ -1276,7 +1439,7 @@
         </div>
     </div>
 
-    <!-- CUSTOM POP-UP / TOAST NOTIFIKASI MODAL (BER-BACKGROUND ELEGANT) -->
+    <!-- CUSTOM POP-UP / TOAST NOTIFIKASI MODAL -->
     <div class="modal fade" id="notificationModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content custom-popup-card border-0">
@@ -1296,6 +1459,12 @@
     <!-- Custom Scripts -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // SET TAHUN COPYRIGHT OTOMATIS
+            const copyrightYearElem = document.getElementById('copyrightYear');
+            if (copyrightYearElem) {
+                copyrightYearElem.textContent = new Date().getFullYear();
+            }
+
             // ANTI-COPY & DEVTOOLS DISABLE
             document.addEventListener('keydown', (e) => {
                 if (
@@ -1311,7 +1480,7 @@
                 }
             });
 
-            // FUNGSI UNTUK MENAMPILKAN POP-UP MODAL CUSTOM (DENGAN BACKGROUND ELEGANT)
+            // FUNGSI POP-UP MODAL CUSTOM
             function showCustomPopup(title, message, type = 'success') {
                 const popupTitle = document.getElementById('popupTitle');
                 const popupMessage = document.getElementById('popupMessage');
@@ -1335,7 +1504,7 @@
                 notifModal.show();
             }
 
-            // LOGIKA DYNAMIC TIME GREETING & ICON (PAGI, SIANG, SORE, MALAM)
+            // LOGIKA DYNAMIC TIME GREETING & ICON
             function updateDynamicGreeting() {
                 const now = new Date();
                 const hours = now.getHours();
@@ -1386,7 +1555,7 @@
                 }
             });
 
-            // 3. NAVIGASI SMOOTH SCROLLING & TUTUP MENU HP SAAT DIKLIK
+            // 3. NAVIGASI SMOOTH SCROLLING
             const mobileMenu = document.getElementById('mobileNavbarMenu');
             const allNavLinks = document.querySelectorAll('.desktop-nav-link, .mobile-nav-link, .nav-cta-btn');
 
@@ -1446,21 +1615,33 @@
             }
             typeEffect();
 
-            // 5. Animated Progress Bars on Scroll (Berulang Kembali)
-            const skillsSection = document.getElementById('skills');
-            const progressBars = document.querySelectorAll('.progress-bar-fill');
+            // 5. ANIMATED PROGRESS BARS ON SCROLL & CAROUSEL CHANGE
+            function animateSkillBars() {
+                const activeSlide = document.querySelector('#skillsCarousel .carousel-item.active');
+                if (activeSlide) {
+                    const progressBars = activeSlide.querySelectorAll('.progress-bar-fill');
+                    progressBars.forEach(bar => {
+                        const targetVal = bar.getAttribute('data-progress');
+                        bar.style.width = targetVal + '%';
+                    });
+                }
+            }
 
+            const skillsCarouselElem = document.getElementById('skillsCarousel');
+            if (skillsCarouselElem) {
+                skillsCarouselElem.addEventListener('slid.bs.carousel', () => {
+                    document.querySelectorAll('#skills .progress-bar-fill').forEach(bar => bar.style.width = '0%');
+                    setTimeout(animateSkillBars, 100);
+                });
+            }
+
+            const skillsSection = document.getElementById('skills');
             const skillsObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        progressBars.forEach(bar => {
-                            const targetVal = bar.getAttribute('data-progress');
-                            bar.style.width = targetVal + '%';
-                        });
+                        animateSkillBars();
                     } else {
-                        progressBars.forEach(bar => {
-                            bar.style.width = '0%';
-                        });
+                        document.querySelectorAll('#skills .progress-bar-fill').forEach(bar => bar.style.width = '0%');
                     }
                 });
             }, { threshold: 0.15 });
@@ -1469,7 +1650,7 @@
                 skillsObserver.observe(skillsSection);
             }
 
-            // 6. SCROLL REVEAL ANIMATION SYSTEM (BERULANG KEMBALI)
+            // 6. SCROLL REVEAL ANIMATION SYSTEM
             const revealItems = document.querySelectorAll('.reveal-item');
             
             const revealObserver = new IntersectionObserver((entries) => {
@@ -1481,8 +1662,8 @@
                     }
                 });
             }, {
-                threshold: 0.1,
-                rootMargin: "0px 0px -30px 0px"
+                threshold: 0.05,
+                rootMargin: "0px 0px -20px 0px"
             });
 
             revealItems.forEach(item => {
@@ -1560,13 +1741,11 @@
                     const subjectInput = document.getElementById('inputSubject').value.trim();
                     const messageInput = document.getElementById('inputMessage').value.trim();
 
-                    // Cek jika ada bidang yang kosong
                     if (!nameInput || !emailInput || !subjectInput || !messageInput) {
                         showCustomPopup('Formulir Belum Lengkap', 'Silakan isi semua kolom formulir sebelum mengirim pesan.', 'warning');
                         return;
                     }
 
-                    // VALIDASI REGEX EMAIL STRICT (WAJIB MEMILIKI @ DAN DOMAIN VALID)
                     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
                     if (!emailRegex.test(emailInput)) {
                         showCustomPopup('Format Email Salah', 'Email harus mengandung karakter @ dan nama domain yang valid (contoh: nama@gmail.com).', 'warning');
@@ -1576,7 +1755,6 @@
                     const submitBtn = document.getElementById('submitBtn');
                     const originalBtnContent = submitBtn.innerHTML;
                     
-                    // Efek loading pada tombol
                     submitBtn.disabled = true;
                     submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Mengirim Pesan...';
 
