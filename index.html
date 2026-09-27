@@ -137,7 +137,7 @@
             scroll-margin-top: 80px;
         }
 
-        /* EFEK ANIMASI SCROLL REVEAL (BERULANG KEMBALI) */
+        /* EFEK ANIMASI SCROLL REVEAL */
         .reveal-item {
             opacity: 0;
             transform: translateY(40px);
@@ -476,25 +476,33 @@
             margin-top: 4px;
         }
 
-        /* SKILLS SLIDER SPACING GAP */
+        /* ============================================================
+           PERBAIKAN TOTAL SKILLS CAROUSEL (DIJAMIN 100% PRESISI & STABIL)
+        ============================================================ */
+        #skillsCarousel {
+            position: relative;
+        }
+
         .skill-slide-wrapper {
-            padding: 0.5rem 1rem 1.5rem 1rem;
+            padding: 0.5rem 1rem;
             max-width: 850px;
             margin: 0 auto;
         }
 
+        /* Kunci tinggi fisik kartu */
         .wide-skill-card {
-            padding: 2.5rem 2rem;
+            padding: 2rem 1.75rem;
             border-radius: 24px;
-            min-height: 250px;
+            height: 310px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            box-sizing: border-box;
         }
 
         .wide-skill-icon-lg {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
             display: inline-block;
         }
 
@@ -507,8 +515,20 @@
             color: var(--accent-primary);
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
             display: inline-block;
+        }
+
+        /* Kunci jumlah baris teks deskripsi max 3 baris agar rapi & utuh */
+        .skill-desc-clamp {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.5;
+            font-size: 0.925rem;
+            margin-bottom: 0;
         }
 
         .progress-thin {
@@ -553,6 +573,18 @@
             background-color: var(--accent-primary) !important;
             opacity: 1 !important;
             box-shadow: 0 0 12px var(--accent-glow) !important;
+        }
+
+        /* Penyesuaian khusus layar HP */
+        @media (max-width: 576px) {
+            .wide-skill-card {
+                height: 330px;
+                padding: 1.5rem 1.25rem;
+            }
+            .skill-desc-clamp {
+                -webkit-line-clamp: 4;
+                font-size: 0.875rem;
+            }
         }
 
         /* Filter Pills */
@@ -661,6 +693,7 @@
             align-items: center;
             gap: 1rem;
             padding: 1.25rem;
+            cursor: pointer;
         }
 
         .contact-link-card:hover .contact-info-icon {
@@ -961,7 +994,7 @@
         </div>
     </section>
 
-    <!-- SKILLS SECTION (GESER OTOMATIS 5 DETIK) -->
+    <!-- SKILLS SECTION -->
     <section id="skills">
         <div class="container">
             <div class="text-center mx-auto mb-5 reveal-item">
@@ -988,7 +1021,7 @@
                                             <i class="devicon-bootstrap-plain colored wide-skill-icon-lg"></i>
                                         </div>
                                         <h4 class="fw-bold mb-2">Web Frontend Development</h4>
-                                        <p class="text-secondary mb-4">Pengembangan antarmuka website modern, responsif, dan interaktif menggunakan standar HTML5, CSS3, JavaScript, dan Framework Bootstrap 5.</p>
+                                        <p class="text-secondary skill-desc-clamp">Pengembangan antarmuka website modern, responsif, dan interaktif menggunakan standar HTML5, CSS3, JavaScript, dan Framework Bootstrap 5.</p>
                                     </div>
                                     <div>
                                         <div class="d-flex justify-content-between small font-weight-bold text-muted mb-1">
@@ -1013,7 +1046,7 @@
                                             <i class="fa-solid fa-brain text-info wide-skill-icon-lg"></i>
                                         </div>
                                         <h4 class="fw-bold mb-2">Artificial Intelligence (AI) Integration</h4>
-                                        <p class="text-secondary mb-4">Pemanfaatan tools AI modern untuk mempercepat alur kerja pengembangan perangkat lunak, otomatisasi tugas, riset, dan analisis data.</p>
+                                        <p class="text-secondary skill-desc-clamp">Pemanfaatan tools AI modern untuk mempercepat alur kerja pengembangan perangkat lunak, otomatisasi tugas, riset, dan analisis data.</p>
                                     </div>
                                     <div>
                                         <div class="d-flex justify-content-between small font-weight-bold text-muted mb-1">
@@ -1038,7 +1071,7 @@
                                             <i class="devicon-figma-plain colored wide-skill-icon-lg"></i>
                                         </div>
                                         <h4 class="fw-bold mb-2">UI/UX Design & Wireframing</h4>
-                                        <p class="text-secondary mb-4">Perancangan tata letak antarmuka pengguna yang bersih, intuitif, dan estetik menggunakan Figma dengan standar wireframing dan interactive prototyping.</p>
+                                        <p class="text-secondary skill-desc-clamp">Perancangan tata letak antarmuka pengguna yang bersih, intuitif, dan estetik menggunakan Figma dengan standar wireframing dan interactive prototyping.</p>
                                     </div>
                                     <div>
                                         <div class="d-flex justify-content-between small font-weight-bold text-muted mb-1">
@@ -1064,7 +1097,7 @@
                                             <i class="fa-solid fa-film text-warning wide-skill-icon-lg"></i>
                                         </div>
                                         <h4 class="fw-bold mb-2">Video Editing (CapCut & Filmora)</h4>
-                                        <p class="text-secondary mb-4">Proses penyuntingan video dinamis, penyelarasan audio, efek transisi halus, serta pembuatan konten komersial multimedia.</p>
+                                        <p class="text-secondary skill-desc-clamp">Proses penyuntingan video dinamis, penyelarasan audio, efek transisi halus, serta pembuatan konten komersial multimedia.</p>
                                     </div>
                                     <div>
                                         <div class="d-flex justify-content-between small font-weight-bold text-muted mb-1">
@@ -1089,7 +1122,7 @@
                                             <i class="fa-solid fa-palette text-primary wide-skill-icon-lg"></i>
                                         </div>
                                         <h4 class="fw-bold mb-2">Canva Graphic Design</h4>
-                                        <p class="text-secondary mb-4">Pembuatan aset grafis pemasaran, konten media sosial, presentasi profesional, serta elemen visual yang komunikatif dan estetik.</p>
+                                        <p class="text-secondary skill-desc-clamp">Pembuatan aset grafis pemasaran, konten media sosial, presentasi profesional, serta elemen visual yang komunikatif dan estetik.</p>
                                     </div>
                                     <div>
                                         <div class="d-flex justify-content-between small font-weight-bold text-muted mb-1">
@@ -1114,7 +1147,7 @@
                                             <i class="fa-solid fa-screwdriver-wrench text-warning wide-skill-icon-lg"></i>
                                         </div>
                                         <h4 class="fw-bold mb-2">Teknisi Hardware & Maintenance</h4>
-                                        <p class="text-secondary mb-4">Perakitan PC, diagnosa kerusakan perangkat keras, instalasi sistem operasi, dan pemeliharaan rutin infrastruktur komputer.</p>
+                                        <p class="text-secondary skill-desc-clamp">Perakitan PC, diagnosa kerusakan perangkat keras, instalasi sistem operasi, dan pemeliharaan rutin infrastruktur komputer.</p>
                                     </div>
                                     <div>
                                         <div class="d-flex justify-content-between small font-weight-bold text-muted mb-1">
@@ -1140,7 +1173,7 @@
                                             <i class="fa-solid fa-clapperboard text-danger wide-skill-icon-lg"></i>
                                         </div>
                                         <h4 class="fw-bold mb-2">Photography & Videography</h4>
-                                        <p class="text-secondary mb-4">Pengambilan gambar komersial dan rekaman sinematik dengan pengaturan pencahayaan, arah sudut pandang, serta komposisi visual yang presisi.</p>
+                                        <p class="text-secondary skill-desc-clamp">Pengambilan gambar komersial dan rekaman sinematik dengan pengaturan pencahayaan, arah sudut pandang, serta komposisi visual yang presisi.</p>
                                     </div>
                                     <div>
                                         <div class="d-flex justify-content-between small font-weight-bold text-muted mb-1">
@@ -1166,7 +1199,7 @@
                                             <i class="devicon-mysql-plain colored wide-skill-icon-lg"></i>
                                         </div>
                                         <h4 class="fw-bold mb-2">Git, GitHub & Basis Data</h4>
-                                        <p class="text-secondary mb-4">Pengelolaan repository versi menggunakan Git/GitHub serta manajemen basis data terstruktur menggunakan phpMyAdmin (MySQL).</p>
+                                        <p class="text-secondary skill-desc-clamp">Pengelolaan repository versi menggunakan Git/GitHub serta manajemen basis data terstruktur menggunakan phpMyAdmin (MySQL).</p>
                                     </div>
                                     <div>
                                         <div class="d-flex justify-content-between small font-weight-bold text-muted mb-1">
@@ -1338,17 +1371,19 @@
             <div class="row g-4">
                 <div class="col-lg-5 reveal-item">
                     <div class="d-flex flex-column gap-3">
-                        <!-- DIRECT LINK GMAIL WEB -->
-                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=razalfaaindi@gmail.com" target="_blank" class="glass-card contact-link-card">
+                        
+                        <!-- TOMBOL EMAIL: AUTO DETEKSI HP (APP GMAIL) DAN LAPTOP (GMAIL WEB) -->
+                        <a href="javascript:void(0);" onclick="openGmailContact()" class="glass-card contact-link-card">
                             <div class="contact-info-icon">
                                 <i class="fa-solid fa-envelope"></i>
                             </div>
                             <div>
-                                <div class="small text-muted font-weight-semibold">Kirim Email Langsung</div>
+                                <div class="small text-muted font-weight-semibold">Kirim Email (App / Web Gmail)</div>
                                 <div class="fw-bold text-primary">razalfaaindi@gmail.com</div>
                             </div>
                         </a>
 
+                        <!-- WHATSAPP -->
                         <a href="https://wa.me/6281360624398" target="_blank" class="glass-card contact-link-card">
                             <div class="contact-info-icon">
                                 <i class="fa-brands fa-whatsapp"></i>
@@ -1359,6 +1394,7 @@
                             </div>
                         </a>
 
+                        <!-- LOKASI -->
                         <a href="https://www.google.com/maps/search/?api=1&query=Huta+Pondok+Berastagi" target="_blank" class="glass-card contact-link-card">
                             <div class="contact-info-icon">
                                 <i class="fa-solid fa-location-dot"></i>
@@ -1458,6 +1494,22 @@
 
     <!-- Custom Scripts -->
     <script>
+        // FUNGSI KHUSUS BUKA GMAIL (DETEKSI OTOMATIS HP / PC)
+        function openGmailContact() {
+            const email = "razalfaaindi@gmail.com";
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+            if (isMobile) {
+                window.location.href = `googlegmail:///co?to=${email}`;
+                setTimeout(() => {
+                    window.location.href = `mailto:${email}`;
+                }, 500);
+            } else {
+                const webGmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}`;
+                window.open(webGmailUrl, '_blank');
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             // SET TAHUN COPYRIGHT OTOMATIS
             const copyrightYearElem = document.getElementById('copyrightYear');
